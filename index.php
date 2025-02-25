@@ -49,6 +49,19 @@ $content = isset($_GET['content']) ? htmlspecialchars($_GET['content'], ENT_QUOT
       font-family: Archivo, sans-serif;
       font-weight: 500;
     }
+    a {
+        color: rgb(255 175 158);
+        display: inline-block;
+        padding: 20px;
+        border: 1px solid rgb(255 175 158);
+        border-radius: 5px;
+        text-decoration: none;
+    }
+    a:hover {
+        color: white;
+        border-color: white;
+        text-decoration: underline;
+    }
   </style>
 </head>
 <body>
@@ -57,5 +70,6 @@ $content = isset($_GET['content']) ? htmlspecialchars($_GET['content'], ENT_QUOT
   <?php if (!empty($content)): ?>
   <p><?php echo $content; ?></p>
   <?php endif; ?>
+  <p><a href="#" onclick="window.history.back()">Retour à la page précédente</a></p>
 </body>
 </html>
