@@ -8,6 +8,7 @@ if (empty($title)) {
 }
 $content = isset($_GET['content']) ? htmlspecialchars($_GET['content'], ENT_QUOTES | ENT_SUBSTITUTE) : '';
 $showForm = !isset($_GET['title']) || empty($_GET['title']);
+$hideButton = isset($_GET['button']) && $_GET['button'] === 'hide';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -86,12 +87,15 @@ $showForm = !isset($_GET['title']) || empty($_GET['title']);
       <?php if (!empty($content)): ?>
       <p><?php echo $content; ?></p>
       <?php endif; ?>
+      <?php if (!$hideButton): ?>
       <p><a class="btn" href="#" onclick="window.history.back()">Retour à la page précédente</a></p>
+      <?php endif; ?>
   </div>
   <?php if ($showForm): ?>
     <form id="form" action="index.php" method="get" style="display: none;">
-      Title: <input type="text" name="title" placeholder="404 Not Found">
-      Description: <input type="text" name="content" placeholder="Description">
+      <label>Title: <input type="text" name="title" placeholder="404 Not Found"></label>
+      <label>Description: <input type="text" name="content" placeholder="Description"></label>
+      <label>Hide Button: <input type="checkbox" name="button" value="hide"></label>
       <input type="submit" value="Submit">
     </form>
     <a class="action" href="#" onclick="document.getElementById('form').style.display = 'block'; this.style.display = 'none'; return false;">Change values</a>
